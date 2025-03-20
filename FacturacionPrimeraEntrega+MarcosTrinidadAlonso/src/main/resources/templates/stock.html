@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Stock de Videojuegos</title>
+</head>
+<body>
+    <h1>Stock de Videojuegos por Sucursal</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Sucursal</th>
+                <th>Ubicación</th>
+                <th>Empleados</th>
+                <th>Videojuego</th>
+                <th>Cantidad</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="sucursal : ${sucursales}">
+                <td th:text="${sucursal.nombre}" rowspan="${#lists.size(sucursal.stock)}"></td>
+                <td th:text="${sucursal.ubicacion}" rowspan="${#lists.size(sucursal.stock)}"></td>
+                <td th:text="${#lists.size(sucursal.empleados)}" rowspan="${#lists.size(sucursal.stock)}"></td>
+                <td th:each="stock, iterStat : ${sucursal.stock}">
+                    <span th:text="${stock.videojuego.nombre}"></span>
+                </td>
+                <td th:each="stock, iterStat : ${sucursal.stock}">
+                    <span th:text="${stock.cantidad}"></span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+</html>
